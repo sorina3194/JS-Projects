@@ -12,13 +12,10 @@
       <div class="collapse navbar-collapse" id="navLinks">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="" class="nav-link" id="library">Library</a>
+            <button id="my-books">My Books</button>
           </li>
           <li class="nav-item">
             <button onclick="visibility()">Add book</button>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">Remove book</a>
           </li>
         </ul>
       </div>
@@ -31,6 +28,7 @@
           <th>Author</th>
           <th>Pages</th>
           <th>Read</th>
+          <th>Remove Book</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -47,15 +45,6 @@
       <div>
         <label for="pages">Pages</label>
         <input type="text" id="pages" name="pages" placeholder="pages" />
-      </div>
-      <div>
-        <label for="read">I have read it</label>
-        <input
-          type="checkbox"
-          id="read"
-          name="read"
-          value="I have read the book"
-        />
       </div>
       <div><input type="submit" id="submit" value="Submit" /></div>
     </form>

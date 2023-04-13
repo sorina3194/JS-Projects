@@ -1,20 +1,37 @@
 let myLibrary = [];
-function write(book, index) {
+function write() {
   let table = document.getElementById("myLibrary");
   let tableBody = table.getElementsByTagName("tbody")[0];
+  tableBody.innerHTML = "";
+  for (let i = 0; i < myLibrary.length; i++) {
+    let row = tableBody.insertRow();
+    let indexCell = row.insertCell(0);
+    let titleCell = row.insertCell(1);
+    let authorCell = row.insertCell(2);
+    let pagesCell = row.insertCell(3);
+    let readCell = row.insertCell(4);
+    let buttonCell = row.insertCell(5);
 
-  let row = tableBody.insertRow();
-  let indexCell = row.insertCell(0);
-  let titleCell = row.insertCell(1);
-  let authorCell = row.insertCell(2);
-  let pagesCell = row.insertCell(3);
-  let readCell = row.insertCell(4);
-
-  indexCell.innerHTML = index;
-  titleCell.innerHTML = book.title;
-  authorCell.innerHTML = book.author;
-  pagesCell.innerHTML = book.pages;
-  readCell.innerHTML = book.read;
+    indexCell.innerHTML = i;
+    titleCell.innerHTML = myLibrary[i].title;
+    authorCell.innerHTML = myLibrary[i].author;
+    pagesCell.innerHTML = myLibrary[i].pages;
+    const button = document.createElement("button"); // Create a new button element
+    button.innerText = "Click Me"; // Set the text of the button
+    button.addEventListener("click", function () {
+      myLibrary.splice(i, 1);
+      write();
+    });
+    buttonCell.appendChild(button);
+    const read = document.createElement("button");
+    read.innerText = "Read"; // Set the text of the button
+    read.addEventListener("click", function () {
+      myLibrary[i].read = true;
+      console.log("✓");
+      write();
+    });
+    readCell.appendChild(read); // A // Add the button to the container
+  }
 }
 
 function Book(title, author, pages, read) {
@@ -35,14 +52,17 @@ function submitBook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  const read = document.getElementById("read").value;
-  let book = new Book(title, author, Number(pages), read);
+  let book = new Book(title, author, Number(pages), false);
   myLibrary.push(book);
-  write(book, myLibrary.length - 1);
+  write();
   const myForm = document.getElementById("my-form");
   myForm.style.visibility = "hidden";
-  console.log(title, author, pages, read);
+  console.log(title, author, pages);
   console.log(myLibrary);
 }
 const myForm = document.getElementById("my-form");
 myForm.style.visibility = "hidden";
+
+document.getElementById("my-books").addEventListener("click", function () {
+  console.log(myLibrary);
+});
