@@ -40,19 +40,18 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-/* let firstBook = new Book("title", "author", 212, true); // addNewBook();
-myLibrary.push(firstBook);
-console.log(myLibrary); */
+
 function visibility() {
   const myForm = document.getElementById("my-form");
   myForm.style.visibility = "visible";
 }
+
 function submitBook() {
   event.preventDefault();
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  let book = new Book(title, author, Number(pages), false);
+  let book = new Book(title, author, Number(pages), false); //create an instance of the book object
   myLibrary.push(book);
   write();
   const myForm = document.getElementById("my-form");
