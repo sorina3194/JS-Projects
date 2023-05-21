@@ -67,6 +67,7 @@ class Gameboard {
         [2, 0],
       ],
     ];
+    //loop through winningStates array to check if someone won.
     for (let winState of winningStates) {
       const [position1, position2, position3] = winState;
       if (
@@ -81,6 +82,7 @@ class Gameboard {
         return true;
       }
     }
+    //if every cell is full, alert a draw  --- still to implement not calling a draw if the last filled tile is the winning one
     const allSquaresUsed = this.board.every((row) =>
       row.every((cell) => cell !== "")
     );
@@ -90,11 +92,13 @@ class Gameboard {
     }
     return false;
   }
+
   drawBoard() {
     let container = document.getElementById("container");
     container.innerHTML = "";
     let playerX = document.getElementById("Player");
     playerX.innerHTML = this.currentPlayer.name;
+    //.currentPlayer is an instance of Player class,and Player instances have .name and.marker properties
 
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board[i].length; j++) {
